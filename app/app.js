@@ -44,13 +44,13 @@ app.get("/programmes", function(req, res) {
         res.json(programmes);
     });
 });
-// Add /students endpoint
-app.get("/students", function(req, res) {
-    // Call getStudents on data
-    data.getStudents(function(students) {
-      res.json(students);
+// Add /student endpoint
+app.get("/student/:id", function(req, res) {
+    // Call getStudent on data
+    data.getStudent(req.params.id, function(student) {
+        res.json(student);
     });
-  });
+});
 
 // Add /students endpoint
 app.get("/students", function(req, res) {
