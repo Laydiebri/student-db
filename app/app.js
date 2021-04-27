@@ -23,8 +23,10 @@ app.get("/module/:code", function(req, res) {
 
 // Add /modules endpoint
 app.get("/modules", function(req, res) {
-  // Return "All modules"
-  res.send("All modules");
+    // Call getModules on data
+    data.getModules(function(modules) {
+        res.json(modules);
+    });
 });
 
 // Add /programme endpoint
@@ -32,13 +34,13 @@ app.get("/programme/:code", function(req, res) {
   // Return "Programme <code>"
   res.send("Programme " + req.params.code);
 });
-
 // Add /programmes endpoint
 app.get("/programmes", function(req, res) {
-  // Return "All programmes"
-  res.send("All programmes");
+    // Call getProgrammes on data
+    data.getProgrammes(function(programmes) {
+        res.json(programmes);
+    });
 });
-
 // Add /students endpoint
 app.get("/students", function(req, res) {
     // Call getStudents on data

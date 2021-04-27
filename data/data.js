@@ -50,3 +50,49 @@ exports.getStudents = function(callback) {
         callback(students);
     });
 };
+// Export getProgrammes function
+exports.getProgrammes = function(callback) {
+    // Create SQL statement
+    var sql = `SELECT * FROM Programmes`;
+    // Execute query. Return all
+    db.all(sql, function(err, rows) {
+        // Check if error
+        if (err) {
+            return console.error(err.message);
+        }
+        // Create programme array
+        var programmes = [];
+        // Loop through rows creating programme objects
+        for (var row of rows) {
+            // Create programme object
+            var prog = new student.Programme(row.code, row.name);
+            // Add object to array
+            programmes.push(prog);
+        }
+        // Execute callback function
+        callback(programmes);
+    });
+};
+// Export getModules function
+exports.getModules = function(callback) {
+    // Create SQL statement
+    var sql = `SELECT * FROM Modules`;
+    // Execute query. Return all
+    db.all(sql, function(err, rows) {
+        // Check if error
+        if (err) {
+            return console.error(err.message);
+        }
+        // Create modules array
+        var modules = [];
+        // Loop through each row and create a module object
+        for (var row of rows) {
+            // Create module object
+            var mod = new student.Module(row.code, row.name);
+            // Add module to array
+            modules.push(mod);
+        }
+        // Execute callback function
+        callback(modules);
+    });
+};
