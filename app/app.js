@@ -39,11 +39,13 @@ app.get("/programmes", function(req, res) {
   res.send("All programmes");
 });
 
-// Add /student endpoint
-app.get("/student/:id", function(req, res) {
-  // Return "Student <id>"
-  res.send("Student " + req.params.id);
-});
+// Add /students endpoint
+app.get("/students", function(req, res) {
+    // Call getStudents on data
+    data.getStudents(function(students) {
+      res.json(students);
+    });
+  });
 
 // Add /students endpoint
 app.get("/students", function(req, res) {
